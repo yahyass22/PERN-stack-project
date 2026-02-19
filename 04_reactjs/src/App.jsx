@@ -1,5 +1,5 @@
 
-import Car from "./components/car"
+import Car from "./components/car.jsx"
 import { useState, useEffect } from "react";
 
 
@@ -7,12 +7,13 @@ const App = () => {
 
    const [cars, setCars] = useState([]);
    useEffect(() => {
-    fetch('http://localhost:3000/api/v1/cars')
+    fetch('api/v1/cars')
          .then(res => res.json())
          .then(data => setCars(data))
          .catch(err => console.log(err))
-console.log(cars);
+
    }, []);
+  
 
    
 
@@ -22,7 +23,7 @@ console.log(cars);
     
         <ul>
             {cars.map(car => ( 
-                <Car key={car.id} car={car} />
+                <Car key={car.id} {...car} />
             ))}
         </ul>
     
